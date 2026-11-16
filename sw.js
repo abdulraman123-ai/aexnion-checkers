@@ -1,0 +1,5 @@
+const CACHE='aexnion-checkers-v1';
+const SHELL=['/','/manifest.webmanifest','/checkers-icon.svg','/app.0','/app.1','/app.2','/app.3','/app.4','/app.5','/app.6','/app.7','/styles.0','/styles.1','/styles.2','/styles.3'];
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)));self.skipWaiting();});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim();});
+self.addEventListener('fetch',event=>{const req=event.request;if(req.method!=='GET'||new URL(req.url).origin!==self.location.origin)return;event.respondWith(fetch(req).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(req,copy));}return response;}).catch(()=>caches.match(req).then(cached=>cached||caches.match('/'))));});
