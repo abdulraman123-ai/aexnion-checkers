@@ -1,0 +1,11 @@
+{
+  "name": "Aexnion Checkers",
+  "short_name": "Checkers",
+  "description": "Play checkers against AI or compete in the global arena and tournaments.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080c12",
+  "theme_color": "#080c12",
+  "icons": [{"src": "/checkers-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}
